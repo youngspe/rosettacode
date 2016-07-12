@@ -1,0 +1,6 @@
+[package]
+name = "perlin_noise"
+version = "0.1.0"
+authors = ["Youngspe <spencerwyoung@outlook.com>"]
+
+[dependencies]
