@@ -2,7 +2,7 @@
 // Recursive: Translated from C#
 use std::collections::VecDeque;
 
-fn lcs_r<T: Eq + Clone>(a: &[T], b: &[T]) -> Vec<T> {
+pub fn lcs_r<T: Eq + Clone>(a: &[T], b: &[T]) -> Vec<T> {
     if a.len() == 0 || b.len() == 0 {
         return Vec::new();
     }
@@ -24,7 +24,7 @@ fn lcs_r<T: Eq + Clone>(a: &[T], b: &[T]) -> Vec<T> {
     }
 }
 
-fn lcs_r_string(a: &str, b: &str) -> String {
+pub fn lcs_r_string(a: &str, b: &str) -> String {
     let a_vec = a.chars().collect::<Vec<_>>();
     let b_vec = b.chars().collect::<Vec<_>>();
 
@@ -32,7 +32,7 @@ fn lcs_r_string(a: &str, b: &str) -> String {
 }
 
 // Dynamic Programming: Translated from C
-fn lcs<T: Eq + Clone>(a: &[T], b: &[T]) -> Vec<T> {
+pub fn lcs<T: Eq + Clone>(a: &[T], b: &[T]) -> Vec<T> {
     let mut c = (0..a.len() + 1).map(|_| Vec::new()).collect::<Vec<_>>();
 
     for _ in 0..b.len() + 1 {
@@ -72,7 +72,7 @@ fn lcs<T: Eq + Clone>(a: &[T], b: &[T]) -> Vec<T> {
     Vec::from(s)
 }
 
-fn lcs_string(a: &str, b: &str) -> String {
+pub fn lcs_string(a: &str, b: &str) -> String {
     let a_vec = a.chars().collect::<Vec<_>>();
     let b_vec = b.chars().collect::<Vec<_>>();
 
@@ -93,5 +93,24 @@ fn main() {
     {
         let result = lcs_string(a, b);
         println!("Dynamic Programming: {}", result);
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_recursive() {
+        let a = "thisisatest";
+        let b = "testing123testing";
+
+        assert_eq!("tsitest", lcs_r_string(a, b));
+    }
+    #[test]
+    fn test_dynamic() {
+        let a = "thisisatest";
+        let b = "testing123testing";
+
+        assert_eq!("tsitest", lcs_string(a, b));
     }
 }
