@@ -1,0 +1,6 @@
+[package]
+name = "conways_game"
+version = "0.1.0"
+authors = ["Youngspe <spencerwyoung@outlook.com>"]
+
+[dependencies]
